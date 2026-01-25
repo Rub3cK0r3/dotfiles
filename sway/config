@@ -1,0 +1,71 @@
+set $mod Mod4
+set $terminal kitty
+
+set $bg #000000
+set $bg_alt #161b22
+set $fg #c9d1d9
+set $gray #8b949e
+set $green #66b38b 
+set $blue #58a6ff
+
+font pango:FiraCode 15
+
+input * {
+    xkb_layout es
+    repeat_delay 200
+    repeat_rate 30 
+}
+
+default_border pixel 2
+default_floating_border pixel 2
+
+client.focused          $gray   $gray   $fg   $green
+client.unfocused        $bg_alt $bg_alt $fg   $gray
+client.focused_inactive $bg_alt $bg_alt $fg   $gray
+client.urgent           $blue   $blue   $fg   $blue
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+
+bindsym $mod+Return exec $terminal
+bindsym $mod+d exec wofi --show run
+
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+
+bindsym $mod+f fullscreen toggle
+bindsym $mod+space layout toggle split
+bindsym $mod+Shift+q kill
+
+bindsym $mod+Shift+r reload
+
+floating_modifier $mod
+for_window [window_role="dialog"] floating enable
+for_window [title="Confirmation"] floating enable
+
+# Volume control
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+exec_always mako
+exec_always waybar
+
+output * bg ~/.config/wallpapers/wallpaper.jpg fill
+
+focus_on_window_activation smart
