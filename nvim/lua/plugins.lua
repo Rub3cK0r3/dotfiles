@@ -54,8 +54,9 @@ require("lazy").setup({
 
   -- Lualine
   {"nvim-lualine/lualine.nvim"},
+
   -- Theme
-  {"folke/tokyonight.nvim"},
+  {"rebelot/kanagawa.nvim"},
 
 })
 

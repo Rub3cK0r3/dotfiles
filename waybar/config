@@ -1,130 +1,123 @@
+// -*- mode: json -*-
+
 {
 	"layer": "top",
 	"position": "top",
 
 	"modules-left": [
-		 "memory",
-		 "custom/sep",
-		 "cpu",
-		 "custom/sep",
-		 "disk",
-		 "custom/sep",
-		"network"
+		"sway/workspaces",
+		"custom/right-arrow-dark"
 	],
-
-  "modules-center": [
-		"sway/workspaces"
-  ],
-
+	"modules-center": [
+		"custom/left-arrow-dark",
+		"clock#1",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"clock#2",
+		"custom/right-arrow-dark",
+		"custom/right-arrow-light",
+		"clock#3",
+		"custom/right-arrow-dark"
+	],
 	"modules-right": [
-		// "temperature",
-		//   "custom/sep",
+		"custom/left-arrow-dark",
 		"pulseaudio",
-    "custom/sep",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"memory",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"cpu",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
 		"battery",
-    "custom/sep",
-		"clock"
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"disk",
+		"custom/left-arrow-light",
+		"custom/left-arrow-dark",
+		"tray"
 	],
 
-	// Modules
-
-  "disk": {
-    "format": "󰒋 {percentage_free}%"
-  },
-
-	"battery": {
-		"interval": 10,
-		"states": {
-			"warning": 30,
-			"critical": 15
-		},
-		"format-time": "{H}:{M:02}",
-		// "format": "{icon} {capacity}% ({time})",
-		"format": "󰂀 {capacity}% ({time})",
-		"format-charging": "󰂅  {capacity}% ({time})",
-		"format-charging-full": " {capacity}%",
-		"format-full": "{icon} {capacity}%",
-		"format-alt": "{icon} {power}W",
+	"custom/left-arrow-dark": {
+		"format": "",
 		"tooltip": false
 	},
-
-
-	"clock": {
-		"interval": 20,
-		"format": " {:%d-%m %a   %I:%M %p}",
-		"tooltip": false
-		//"tooltip-format": "{:%e %B %Y}"
-	},
-
-	"cpu": {
-		"interval": 5,
-		"tooltip": false,
-		"format": " {usage}%",
-		"format-alt": "load: {load}",
-		"states": {
-			"warning": 70,
-			"critical": 90
-		}
-	},
-
-	"memory": {
-		"interval": 5,
-		"format": " {used:0.1f}G/{total:0.1f}G",
-		"states": {
-			"warning": 80,
-			"critical": 90
-		},
+	"custom/left-arrow-light": {
+		"format": "",
 		"tooltip": false
 	},
-
-	"network": {
-		"interval": 5,
-		"format-wifi": "󰤨 {essid} ({signalStrength}%)",
-		"format-ethernet": "E: {ifname}",
-		"format-disconnected": "No connection",
-		"format-alt": " {ipaddr}/{cidr}",
-		"tooltip": true
-	},
-
-	"sway/mode": {
-		"format": "{}",
+	"custom/right-arrow-dark": {
+		"format": "",
 		"tooltip": false
 	},
-
-	"sway/window": {
-		"format": "{}",
-		"max-length": 30,
+	"custom/right-arrow-light": {
+		"format": "",
 		"tooltip": false
 	},
 
 	"sway/workspaces": {
-		"disable-scroll-wraparound": true,
-		"smooth-scrolling-threshold": 4,
-		"enable-bar-scroll": true,
+		"disable-scroll": true,
 		"format": "{name}"
 	},
 
-	"pulseaudio": {
-		"format": "  {volume}%",
-		"format-bluetooth": "{icon} {volume}%",
-		"format-muted": "MUTE",
-		"format-icons": {
-			"headphone": "VOL(e):",
-			"default": ["󰕾 ", "󰕾 "]
-		},
-		"scroll-step": 1,
-		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+	"clock#1": {
+		"format": "{:%a}",
+		"tooltip": false
+	},
+	"clock#2": {
+		"format": "{:%H:%M}",
+		"tooltip": false
+	},
+	"clock#3": {
+		"format": "{:%m-%d}",
 		"tooltip": false
 	},
 
-	"tray": {
-		"icon-size": 16
-		//"spacing": 10
+	"pulseaudio": {
+		"format": "{icon} {volume:2}%",
+		"format-bluetooth": "{icon}  {volume}%",
+		"format-muted": "MUTE",
+		"format-icons": {
+			"headphones": "",
+			"default": [
+				"",
+				""
+			]
+		},
+		"scroll-step": 5,
+		"on-click": "pamixer -t",
+		"on-click-right": "pavucontrol"
 	},
-
-  "custom/sep": {
-    "format": "|",
-    "tooltip":false,
-  }
-
+	"memory": {
+		"interval": 5,
+		"format": "Mem {}%"
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "CPU {usage:2}%"
+	},
+	"battery": {
+		"states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity}%",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"disk": {
+		"interval": 5,
+		"format": "Disk {percentage_used:2}%",
+		"path": "/"
+	},
+	"tray": {
+		"icon-size": 20
+	}
 }
