@@ -9,3 +9,7 @@ vim.opt.expandtab = true
 vim.opt.termguicolors = true
 vim.o.background = "dark"
 vim.cmd("colorscheme kanagawa")
+
+vim.cmd("hi Normal guibg=#1E1E1E guifg=#C5C8C6")
+vim.cmd("hi NormalNC guibg=#1E1E1E")
+vim.o.background = "dark"
