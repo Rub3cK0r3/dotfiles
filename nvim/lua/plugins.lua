@@ -13,7 +13,7 @@ require("lazy").setup({
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = servers
+        ensure_installed = require('lsp.lsp_servers')
       })
     end,
   },
