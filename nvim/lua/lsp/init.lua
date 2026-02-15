@@ -1,6 +1,6 @@
 -- lsp main config file
 --
-local lsp_path = vim.fn.stdpath("lsp") .. "/lsp-languages"
+local lsp_path = vim.fn.stdpath("config") .. "/lsp-languages"
 
 -- add path to runtime so require() works
 vim.opt.rtp:append(lsp_path)
