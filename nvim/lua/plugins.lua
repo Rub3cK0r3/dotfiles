@@ -2,7 +2,7 @@
 
 require("lazy").setup({
   -- LSP + Mason
-  { "neovim/nvim-lspconfig",event = { "BufReadPre", "BufNewFile" }, },
+  { "neovim/nvim-lspconfig" },
   {
     "williamboman/mason.nvim",
     config = function()
@@ -21,15 +21,15 @@ require("lazy").setup({
   { "tpope/vim-fugitive", lazy=true, },
 
   -- Autocomplete + Snippets
-  { "hrsh7th/nvim-cmp", event = "InsertEnter" },
-  { "hrsh7th/cmp-nvim-lsp" , event = "InsertEnter"},
-  { "hrsh7th/cmp-buffer" , event = "InsertEnter"},
-  { "hrsh7th/cmp-path" , event = "InsertEnter"},
-  { "L3MON4D3/LuaSnip" , event = "InsertEnter"},
-  { "saadparwaiz1/cmp_luasnip" , event = "InsertEnter"},
+  { "hrsh7th/nvim-cmp" },
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "hrsh7th/cmp-buffer" },
+  { "hrsh7th/cmp-path" },
+  { "L3MON4D3/LuaSnip" },
+  { "saadparwaiz1/cmp_luasnip" },
 
   -- Java config 
-  { "mfussenegger/nvim-jdtls", ft = "java" },
+  { "mfussenegger/nvim-jdtls" },
 
   -- FZF
   { "junegunn/fzf", build = "./install --all" },
@@ -47,7 +47,7 @@ require("lazy").setup({
   { "numToStr/Comment.nvim" },
 
   -- Treesitter
-  { "nvim-treesitter/nvim-treesitter", event = { "BufRead", "BufNewFile" }, build = ":TSUpdate" },
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 
   -- Optional formatter
   { "nvimtools/none-ls.nvim" },
@@ -56,7 +56,7 @@ require("lazy").setup({
   {"nvim-lualine/lualine.nvim"},
 
   -- Theme
-  {"folke/tokyonight.nvim", event = "VimEnter" },
+  {"folke/tokyonight.nvim"},
 
 })
 
