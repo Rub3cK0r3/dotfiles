@@ -13,8 +13,24 @@ require("lazy").setup({
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = require('lsp.lsp_servers')
-      })
+        ensure_installed = {
+                "bashls",
+                "clangd",
+                "cssls",
+                "dockerls",
+                "docker_compose_language_service",
+                "gopls",
+                "html",
+                "intelephense",
+                "jdtls",
+                "jsonls",
+                "lua_ls", 
+                "pyright",
+                "rust_analyzer",
+                "sqlls",
+                "yamlls",
+        }
+    })
     end,
   },
   -- Git
