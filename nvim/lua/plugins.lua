@@ -71,8 +71,8 @@ require("lazy").setup({
   -- Lualine
   {"nvim-lualine/lualine.nvim"},
 
-  -- Theme
-  {"folke/tokyonight.nvim"},
+  -- Colorscheme
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
 
 })
 

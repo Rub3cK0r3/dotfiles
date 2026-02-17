@@ -8,10 +8,7 @@ vim.opt.expandtab = true
 
 vim.opt.termguicolors = true
 vim.o.background = "dark"
-vim.cmd("colorscheme tokyonight")
+vim.cmd("colorscheme catppuccin")
 
 vim.cmd("hi Normal guibg=#010101 guifg=#C5C8C6")
 vim.cmd("hi NormalNC guibg=#292b2e")
-vim.o.background = "dark"
-
-
