@@ -20,12 +20,6 @@ cmp.setup({
   }
 })
 
--- Treesitter
-require("nvim-treesitter.configs").setup({
-  ensure_installed = { "lua", "python", "javascript", "typescript", "html", "css" },
-  highlight = { enable = true }
-})
-
 -- make gf work with [[note]] links in Markdown
 vim.cmd([[
   autocmd FileType markdown setlocal includeexpr=substitute(v:fname,'\\v\\[\\[(.*)\\]\\]','\\1.md','')
