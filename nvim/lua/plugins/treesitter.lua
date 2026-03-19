@@ -1,8 +1,8 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    lazy = false,           -- carga inmediata
-    build = ":TSUpdate",    -- actualiza los parsers al instalar
+    lazy = false,          
+    build = ":TSUpdate", 
     config = function()
       local ok, ts = pcall(require, "nvim-treesitter.configs")
       if not ok then
@@ -15,11 +15,14 @@ return {
           "bash","c","cpp","css","dockerfile","go","html","java",
           "javascript","json","lua","python","rust","sql","typescript","yaml",
         },
-        highlight = { enable = true },
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false, 
+        },
         indent = { enable = true },
         auto_install = true,
+        ignore_install = {},
       })
     end,
   },
 }
-
