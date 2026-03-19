@@ -61,19 +61,28 @@ require("lazy").setup({
   -- Treesitter - carga inmediata y estable
   {
     "nvim-treesitter/nvim-treesitter",
-    lazy = false,          -- se carga al inicio, no lazy
-    build = ":TSUpdate",   -- actualiza/installa parsers
+    build = ":TSUpdate",
+    lazy = true,   -- lo cargamos cuando se requiera
+    event = "BufReadPost",  -- después de abrir buffer
     config = function()
-        require("nvim-treesitter.configs").setup({
-            highlight = { enable = true },
-            indent = { enable = true },
-            ensure_installed = {
-                "bash","c","cpp","css","dockerfile","go","html","java",
-                "javascript","json","lua","python","rust","sql","typescript","yaml",
-            },
-        })
+      local ok, ts = pcall(require, "nvim-treesitter.configs")
+      if not ok then
+        vim.notify("Error cargando nvim-treesitter", vim.log.levels.ERROR)
+        return
+      end
+
+      ts.setup({
+        ensure_installed = {
+          "bash","c","cpp","css","dockerfile","go","html","java",
+          "javascript","json","lua","python","rust","sql","typescript","yaml",
+        },
+        highlight = { enable = true },
+        indent = { enable = true },
+        auto_install = true,
+      })
     end,
-  },
+  }
+
   
 
   -- Lualine
