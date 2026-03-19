@@ -1,26 +1,67 @@
--- lsp main config file
---
-local lsp_path = vim.fn.stdpath("config") .. "/lsp-languages"
+vim.diagnostic.config({
+  severity_sort = true,
+  underline = true,
+  update_in_insert = false,
+  virtual_text = { spacing = 2, prefix = "●" },
+  float = { border = "rounded", source = "if_many" },
+})
 
--- add path to runtime so require() works
-vim.opt.rtp:append(lsp_path)
-
-local M = {}
-for _, file in ipairs(vim.fn.globpath(lsp_path, "*.lua", 0, 1)) do
-  local name = file:match("^.+/(.+)%.lua$") -- get filename without extension
-  if name then
-    M[name] = require(name) -- require each LSP config automatically
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+do
+  local ok, cmp_lsp = pcall(require, "cmp_nvim_lsp")
+  if ok then
+    capabilities = cmp_lsp.default_capabilities(capabilities)
   end
 end
 
--- MASON + LSPCONFIG: ensure installed servers match your configs
-require("mason").setup()
-require("mason-lspconfig").setup({
-  ensure_installed = vim.tbl_keys(M), -- install only what you have configs for
-})
+local servers = {
+  bashls = require("lsp.lsp-languages.bashls"),
+  clangd = require("lsp.lsp-languages.clangd"),
+  cssls = require("lsp.lsp-languages.cssls"),
+  dockerls = require("lsp.lsp-languages.dockerls"),
+  docker_compose_language_service = require("lsp.lsp-languages.docker_compose_language_service"),
+  gopls = require("lsp.lsp-languages.gopls"),
+  html = require("lsp.lsp-languages.html"),
+  intelephense = require("lsp.lsp-languages.intelephense"),
+  jdtls = require("lsp.lsp-languages.jdtls"),
+  jsonls = require("lsp.lsp-languages.jsonls"),
+  lua_ls = require("lsp.lsp-languages.lua_ls"),
+  pyright = require("lsp.lsp-languages.pyright"),
+  rust_analyzer = require("lsp.lsp-languages.rust_analyzer"),
+  sqlls = require("lsp.lsp-languages.sqlls"),
+  yamlls = require("lsp.lsp-languages.yamlls"),
+}
 
--- OPTIONAL: setup each LSP server with its config
-local lspconfig = require("lspconfig")
-for server, config in pairs(M) do
-  lspconfig[server].setup(config)
+-- LSP setup (nvim 0.11+) - rub3ck0r3
+for name, cfg in pairs(servers) do
+  local merged = vim.tbl_deep_extend("force", {}, cfg or {})
+  merged.capabilities = vim.tbl_deep_extend("force", {}, capabilities, merged.capabilities or {})
+  vim.lsp.config(name, merged)
+  vim.lsp.enable(name)
 end
+
+-- Install LSP servers only when i ask for it (no auto downloads on startup)
+vim.api.nvim_create_user_command("LspInstallServers", function()
+  local ok_registry, registry = pcall(require, "mason-registry")
+  if not ok_registry then
+    return vim.notify("mason.nvim is not available (install/enable it first)", vim.log.levels.WARN)
+  end
+
+  local wanted = vim.tbl_keys(servers)
+  table.sort(wanted)
+
+  local any = false
+  for _, name in ipairs(wanted) do
+    local ok_pkg, pkg = pcall(registry.get_package, name)
+    if ok_pkg and pkg and not pkg:is_installed() then
+      any = true
+      pkg:install()
+    end
+  end
+
+  if not any then
+    vim.notify("All configured LSP servers are already installed", vim.log.levels.INFO)
+  else
+    vim.notify("Installing configured LSP servers via Mason…", vim.log.levels.INFO)
+  end
+end, { desc = "Install configured LSP servers (Mason)" })
