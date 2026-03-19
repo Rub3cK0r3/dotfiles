@@ -81,7 +81,7 @@ require("lazy").setup({
         auto_install = true,
       })
     end,
-  }
+  },
 
   
 
