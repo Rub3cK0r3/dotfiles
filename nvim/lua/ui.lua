@@ -13,6 +13,6 @@ vim.opt.termguicolors = true
 vim.o.background = "dark"
 
 -- Colorscheme
-vim.cmd("colorscheme catppuccin dark")
+vim.cmd("colorscheme catppuccin")
 
 return M
