@@ -1,7 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+    lazy = false,
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
@@ -16,13 +16,12 @@ return {
       local luasnip_ok, luasnip = pcall(require, "luasnip")
       if not luasnip_ok then return end
 
-      -- LSP capabilities
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       local cmp_lsp_ok, cmp_lsp = pcall(require, "cmp_nvim_lsp")
       if cmp_lsp_ok then
         capabilities = cmp_lsp.default_capabilities(capabilities)
       end
-      vim.g.lsp_capabilities = capabilities -- opcional: guardar global para tu LSP setup
+      vim.g.lsp_capabilities = capabilities
 
       cmp.setup({
         snippet = {
@@ -63,7 +62,7 @@ return {
           completeopt = "menu,menuone,noselect",
         },
         experimental = {
-          ghost_text = true, -- preview de texto sugerido
+          ghost_text = true,
         },
       })
     end,
