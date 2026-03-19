@@ -2,14 +2,14 @@ local plugins = {}
 
 local modules = {
   "plugins.treesitter",
-  "plugins.lspconfig",
-  "plugins.mason",
+  "plugins.mason",      
+  "plugins.lspconfig",  
+  "plugins.nvim-cmp",  
+  "plugins.comment",
+  "plugins.autoclose",
   "plugins.fugitive",
-  "plugins.nvim-cmp",
   "plugins.fzf",
   "plugins.telescope",
-  "plugins.autoclose",
-  "plugins.comment",
   "plugins.lualine",
   "plugins.catppuccin",
 }
