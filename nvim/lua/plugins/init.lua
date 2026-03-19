@@ -2,6 +2,7 @@ local plugins = {}
 
 local modules = {
   "plugins.treesitter",
+  "plugins.lspconfig",
   "plugins.mason",
   "plugins.fugitive",
   "plugins.nvim-cmp",

@@ -1,7 +1,7 @@
 return {
   {
     "williamboman/mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonUninstall", "MasonLog" },
+    lazy = false,
     config = function()
       local ok, mason = pcall(require, "mason")
       if not ok then
