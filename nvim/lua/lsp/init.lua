@@ -64,4 +64,10 @@ vim.api.nvim_create_user_command("LspInstallServers", function()
   end
 end, { desc = "Install configured LSP servers (Mason)" })
 
+for _, server in ipairs(servers) do
+  lspconfig[server].setup({
+    capabilities = capabilities,
+  })
+end
+
 return M
