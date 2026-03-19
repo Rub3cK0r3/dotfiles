@@ -1,3 +1,5 @@
+local M = {}
+
 vim.diagnostic.config({
   severity_sort = true,
   underline = true,
@@ -7,11 +9,9 @@ vim.diagnostic.config({
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-do
-  local ok, cmp_lsp = pcall(require, "cmp_nvim_lsp")
-  if ok then
-    capabilities = cmp_lsp.default_capabilities(capabilities)
-  end
+local ok, cmp_lsp = pcall(require, "cmp_nvim_lsp")
+if ok then
+  capabilities = cmp_lsp.default_capabilities(capabilities)
 end
 
 local servers = {
@@ -32,7 +32,6 @@ local servers = {
   yamlls = require("lsp.lsp-languages.yamlls"),
 }
 
--- LSP setup (nvim 0.11+) - rub3ck0r3
 for name, cfg in pairs(servers) do
   local merged = vim.tbl_deep_extend("force", {}, cfg or {})
   merged.capabilities = vim.tbl_deep_extend("force", {}, capabilities, merged.capabilities or {})
@@ -40,7 +39,6 @@ for name, cfg in pairs(servers) do
   vim.lsp.enable(name)
 end
 
--- Install LSP servers only when i ask for it (no auto downloads on startup)
 vim.api.nvim_create_user_command("LspInstallServers", function()
   local ok_registry, registry = pcall(require, "mason-registry")
   if not ok_registry then
@@ -65,3 +63,5 @@ vim.api.nvim_create_user_command("LspInstallServers", function()
     vim.notify("Installing configured LSP servers via Mason…", vim.log.levels.INFO)
   end
 end, { desc = "Install configured LSP servers (Mason)" })
+
+return M
