@@ -1,28 +1,5 @@
--- Autocomplete (nvim-cmp) - rub3ck0r3
-do
-  local ok, cmp = pcall(require, "cmp")
-  if ok then
-    cmp.setup({
-      snippet = {
-        expand = function(args)
-          require("luasnip").lsp_expand(args.body)
-        end,
-      },
-      mapping = cmp.mapping.preset.insert({
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<Tab>"] = cmp.mapping.select_next_item(),
-        ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-      }),
-      sources = {
-        { name = "nvim_lsp" },
-        { name = "buffer" },
-        { name = "path" },
-        { name = "luasnip" },
-      },
-    })
-  end
-end
+-- misc.lua - rub3ck0r3
+local M = {}
 
 -- make gf work with [[note]] links in Markdown
 vim.cmd([[
@@ -73,4 +50,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.expandtab = true
   end,
 })
+
+return M
 
