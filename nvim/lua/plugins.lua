@@ -2,74 +2,96 @@
 
 require("lazy").setup({
   -- LSP + Mason
-  { "neovim/nvim-lspconfig" },
   {
     "williamboman/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonUninstall", "MasonLog" },
     config = function()
       require("mason").setup()
     end,
   },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-                "bashls",
-                "clangd",
-                "cssls",
-                "dockerls",
-                "docker_compose_language_service",
-                "gopls",
-                "html",
-                "intelephense",
-                "jdtls",
-                "jsonls",
-                "lua_ls", 
-                "pyright",
-                "rust_analyzer",
-                "sqlls",
-                "yamlls",
-        }
-    })
-    end,
-  },
   -- Git
-  { "tpope/vim-fugitive", lazy=true, },
+  { "tpope/vim-fugitive", cmd = { "Git", "G", "Gwrite", "Gread", "Gdiffsplit", "Gvdiffsplit", "Gclog", "Gblame" } },
 
   -- Autocomplete + Snippets
-  { "hrsh7th/nvim-cmp" },
-  { "hrsh7th/cmp-nvim-lsp" },
-  { "hrsh7th/cmp-buffer" },
-  { "hrsh7th/cmp-path" },
-  { "L3MON4D3/LuaSnip" },
-  { "saadparwaiz1/cmp_luasnip" },
-
-  -- Java config 
-  { "mfussenegger/nvim-jdtls" },
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-path" },
+      { "L3MON4D3/LuaSnip" },
+      { "saadparwaiz1/cmp_luasnip" },
+    },
+  },
 
   -- FZF
-  { "junegunn/fzf", build = "./install --all" },
-  { "junegunn/fzf.vim" },
+  { "junegunn/fzf", build = "./install --all", cmd = { "FZF" } },
+  { "junegunn/fzf.vim", cmd = { "Rg", "Buffers", "Files", "GFiles", "History", "BLines", "Lines", "Ag" } },
+
+  -- Telescope (structured navigation)
+  { "nvim-lua/plenary.nvim", lazy = true },
+  {
+    "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("telescope").setup({})
+    end,
+  },
 
   -- Autoclose brackets / quotes
   {
     "m4xshen/autoclose.nvim",
+    event = "InsertEnter",
     config = function()
       require("autoclose").setup()
     end,
   },
 
   -- Comments
-  { "numToStr/Comment.nvim" },
+  {
+    "numToStr/Comment.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("Comment").setup()
+    end,
+  },
 
-  -- Treesitter
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-
-  -- Optional formatter
-  { "nvimtools/none-ls.nvim" },
+  -- Treesitter - carga inmediata y estable
+  {
+    "nvim-treesitter/nvim-treesitter",
+    lazy = false,          -- se carga al inicio, no lazy
+    build = ":TSUpdate",   -- actualiza/installa parsers
+    config = function()
+        require("nvim-treesitter.configs").setup({
+            highlight = { enable = true },
+            indent = { enable = true },
+            ensure_installed = {
+                "bash","c","cpp","css","dockerfile","go","html","java",
+                "javascript","json","lua","python","rust","sql","typescript","yaml",
+            },
+        })
+    end,
+  },
+  
 
   -- Lualine
-  {"nvim-lualine/lualine.nvim"},
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("lualine").setup({
+        options = {
+          icons_enabled = false,
+          theme = "auto",
+          globalstatus = true,
+          section_separators = "",
+          component_separators = "",
+        },
+      })
+    end,
+  },
 
   -- Colorscheme
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
