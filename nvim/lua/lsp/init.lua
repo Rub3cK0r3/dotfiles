@@ -1,5 +1,12 @@
 local M = {}
 
+local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_ok then
+  vim.notify("nvim-lspconfig no está instalado", vim.log.levels.ERROR)
+  return M
+end
+
+-- Configuración de diagnósticos
 vim.diagnostic.config({
   severity_sort = true,
   underline = true,
@@ -8,12 +15,14 @@ vim.diagnostic.config({
   float = { border = "rounded", source = "if_many" },
 })
 
+-- Capabilities para nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local ok, cmp_lsp = pcall(require, "cmp_nvim_lsp")
 if ok then
   capabilities = cmp_lsp.default_capabilities(capabilities)
 end
 
+-- Servidores y sus configuraciones
 local servers = {
   bashls = require("lsp.lsp-languages.bashls"),
   clangd = require("lsp.lsp-languages.clangd"),
@@ -35,14 +44,14 @@ local servers = {
 for name, cfg in pairs(servers) do
   local merged = vim.tbl_deep_extend("force", {}, cfg or {})
   merged.capabilities = vim.tbl_deep_extend("force", {}, capabilities, merged.capabilities or {})
-  vim.lsp.config(name, merged)
+  vim.lsp.config(name, merged)   -- reemplaza lspconfig
   vim.lsp.enable(name)
 end
 
 vim.api.nvim_create_user_command("LspInstallServers", function()
   local ok_registry, registry = pcall(require, "mason-registry")
   if not ok_registry then
-    return vim.notify("mason.nvim is not available (install/enable it first)", vim.log.levels.WARN)
+    return vim.notify("mason.nvim is not available", vim.log.levels.WARN)
   end
 
   local wanted = vim.tbl_keys(servers)
@@ -63,11 +72,5 @@ vim.api.nvim_create_user_command("LspInstallServers", function()
     vim.notify("Installing configured LSP servers via Mason…", vim.log.levels.INFO)
   end
 end, { desc = "Install configured LSP servers (Mason)" })
-
-for _, server in ipairs(servers) do
-  lspconfig[server].setup({
-    capabilities = capabilities,
-  })
-end
 
 return M
