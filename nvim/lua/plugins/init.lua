@@ -11,7 +11,7 @@ local modules = {
   "plugins.fzf",
   "plugins.telescope",
   "plugins.lualine",
-  "plugins.catppuccin",
+  "plugins.colorscheme",
 }
 
 for _, mod in ipairs(modules) do
