@@ -13,9 +13,20 @@ return {
     config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "bashls","clangd","cssls","dockerls","gopls","html",
-          "intelephense","jdtls","jsonls","lua_ls","pyright",
-          "rust_analyzer","sqlls","yamlls"
+            "bashls",
+            "clangd",
+            "cssls",
+            "dockerls",
+            "gopls",
+            "html",
+            "intelephense",
+            "jdtls",
+            "jsonls",
+            "lua_ls",
+            "pyright",
+            "rust_analyzer",
+            "sqlls",
+            "yamlls",
         },
         automatic_installation = true,
       })

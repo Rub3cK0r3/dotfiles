@@ -1,5 +1,7 @@
 -- init.lua for assembling everything together - rub3ck0r3
 
+vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/site/pack/packer/start/nvim-treesitter")
+
 -- BOOTSTRAP lazy.nvim i prefer it cause it is a much optimized choice
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
