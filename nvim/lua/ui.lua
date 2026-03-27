@@ -14,14 +14,31 @@ vim.opt.signcolumn = "no"
 vim.opt.termguicolors = true
 vim.o.background = "dark"
 
--- Colorscheme
-vim.cmd("colorscheme sacredforest")
-vim.api.nvim_set_hl(0, "Normal", { fg="#F5EBD9", bg="#2B303B" })  
-vim.api.nvim_set_hl(0, "Comment", { fg="#B0B0B0", italic=true })  
-vim.api.nvim_set_hl(0, "Function", { fg="#88C0D0", bold=true })  
-vim.api.nvim_set_hl(0, "Keyword", { fg="#EBCB8B", bold=true })  
-vim.api.nvim_set_hl(0, "String", { fg="#A3BE8C", bold=false })  
-vim.api.nvim_set_hl(0, "LineNr", { bg = "NONE", fg="#969696" })
-vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "NONE", fg = "#EBCB8B", bold=true })  
+vim.cmd("colorscheme kanagawa")
+
+local groups = {
+  "Normal",
+  "NormalNC",
+  "NormalFloat",
+  "VertSplit",
+  "StatusLine",
+  "StatusLineNC",
+  "SignColumn",
+  "Pmenu",
+  "PmenuSel",
+  "TabLine",
+  "TabLineFill",
+  "TabLineSel",
+  "ColorColumn",
+  "CursorLine",
+  "StatusLineTerm",
+  "StatusLineTermNC",
+  "LineNr",
+  "CursorLineNr",
+}
+
+for _, group in ipairs(groups) do
+  vim.cmd(string.format("hi %s guibg=#010101", group))
+end
 
 return M
