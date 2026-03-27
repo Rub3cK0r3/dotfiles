@@ -10,8 +10,8 @@ local modules = {
   "plugins.fugitive",
   "plugins.fzf",
   "plugins.telescope",
-  "plugins.lualine",
   "plugins.colorscheme",
+  "plugins.lualine",
 }
 
 for _, mod in ipairs(modules) do
