@@ -1,5 +1,3 @@
--- This is my lualine minimal config, i like it that way
--- rub3ck0r3 doesn't like "bloated looking lualines"
 return {
   {
     "nvim-lualine/lualine.nvim",
@@ -25,16 +23,16 @@ return {
               z = { fg = "#c5d1c5", bg = "#010101" },
             },
           },
-          section_separators = "",
+          section_separators = " ",
           component_separators = "",
           globalstatus = true,
         },
         sections = {
           lualine_a = {"mode"},
-          lualine_b = {},
+          lualine_b = {""},
           lualine_c = {"filename"},
           lualine_x = {"diagnostics"},
-          lualine_y = {},
+          lualine_y = {""},
           lualine_z = {"location"},
         },
         inactive_sections = {
