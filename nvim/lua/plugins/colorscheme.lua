@@ -1,3 +1,4 @@
+-- I use kanagawa, rub3ck0r3 likes it so much!
 return {
   {
     "rebelot/kanagawa.nvim",

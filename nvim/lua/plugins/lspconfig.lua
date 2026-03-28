@@ -1,3 +1,4 @@
+-- Minimal lspconfig for nvim
 return {
   {
     "neovim/nvim-lspconfig",
