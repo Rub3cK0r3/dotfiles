@@ -1,5 +1,7 @@
 local M = {}
 
+-- This defines how i want my diagnostic
+-- to be shown in the terminal
 vim.diagnostic.config({
   severity_sort = true,
   underline = true,
@@ -8,12 +10,15 @@ vim.diagnostic.config({
   float = { border = "rounded", source = "if_many" },
 })
 
+-- LSP configs for cmp_lsp and capabilities configs prepared
+-- for a long time 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local ok_cmp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
 if ok_cmp then
   capabilities = cmp_lsp.default_capabilities(capabilities)
 end
 
+-- definition of the LSP servers i use on a daily basis
 local servers = {
   bashls = require("lsp.lsp-languages.bashls"),
   clangd = require("lsp.lsp-languages.clangd"),
@@ -32,6 +37,7 @@ local servers = {
   yamlls = require("lsp.lsp-languages.yamlls"),
 }
 
+-- After installing them i have configure them and launch them, so to speak..
 for name, cfg in pairs(servers) do
   local merged = vim.tbl_deep_extend("force", {}, cfg or {})
   merged.capabilities = vim.tbl_deep_extend("force", {}, capabilities, merged.capabilities or {})
@@ -39,6 +45,9 @@ for name, cfg in pairs(servers) do
   vim.lsp.enable(name)
 end
 
+-- If i want to install other LSP servers I'd have to use Mason
+-- this is what rub3ck0r3 uses and the code above is for managing
+-- its behaviour
 vim.api.nvim_create_user_command("LspInstallServers", function()
   local ok_registry, registry = pcall(require, "mason-registry")
   if not ok_registry then

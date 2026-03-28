@@ -1,9 +1,14 @@
+-- treesitter config for the languages rub3ck0r3s
+-- uses on a daily basis
+--
 return {
   {
     "nvim-treesitter/nvim-treesitter",
     lazy = false,
     build = ":TSUpdate",
     config = function()
+      -- To make sure it doesn't break config when launching
+      -- because other plugins depend on this one
       vim.schedule(function()
         local ok, ts = pcall(require, "nvim-treesitter.configs")
         if not ok then

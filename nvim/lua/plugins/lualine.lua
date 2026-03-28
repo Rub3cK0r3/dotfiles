@@ -1,3 +1,5 @@
+-- This is my lualine minimal config, i like it that way
+-- rub3ck0r3 doesn't like "bloated looking lualines"
 return {
   {
     "nvim-lualine/lualine.nvim",

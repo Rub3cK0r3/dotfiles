@@ -1,3 +1,4 @@
+-- I also can use telescope, but it's not usual
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
   {
