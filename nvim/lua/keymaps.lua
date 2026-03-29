@@ -7,14 +7,8 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- FZF keymaps
-map("n", "<leader>f", ":Rg<CR>", { desc = "search text", noremap = true, silent = true })
+map("n", "<leader>f", ":FZF<CR>", { desc = "search text", noremap = true, silent = true }) 
 map("n", "<leader>b", ":Buffers<CR>", { desc = "buffers", noremap = true, silent = true })
-
--- Telescope keymaps (optional; keeps fzf workflow intact)
-map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "files (telescope)", noremap = true, silent = true })
-map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "grep (telescope)", noremap = true, silent = true })
-map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "buffers (telescope)", noremap = true, silent = true })
-map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "help (telescope)", noremap = true, silent = true })
 
 -- Terminal-first: fast embedded terminal
 map("n", "<leader>tt", "<cmd>split | terminal<CR>", { desc = "terminal (split)", noremap = true, silent = true })
