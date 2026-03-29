@@ -7,6 +7,8 @@ export VISUAL=nvim
 
 export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 export PATH="$JAVA_HOME/bin:$HOME/.local/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 export LANG=en_US.UTF-8
 
@@ -66,9 +68,18 @@ video() {
     echo "Recording : $FILE"
 }
 
+alias monitor='
+for i in {1..6}; do
+  swaymsg workspace "$i", move workspace to output HDMI-A-1
+done
+swaymsg output eDP-1 disable
+'
 
-alias monitor="swaymsg output eDP-1 disable"
-
+# core-db
+export DB_PASSWORD='pass'
+export DB_USER='postgres'
+export DB_HOST='localhost'
+export DB_NAME='core_db'
 
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
@@ -78,5 +89,4 @@ if [ -d "$HOME/.zshrc.d" ]; then
     [ -r "$f" ] && source "$f"
   done
 fi
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
