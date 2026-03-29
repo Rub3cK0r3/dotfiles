@@ -30,7 +30,6 @@ local groups = {
   "TabLineFill",
   "TabLineSel",
   "ColorColumn",
-  "CursorLine",
   "StatusLineTerm",
   "StatusLineTermNC",
   "LineNr",
