@@ -8,7 +8,7 @@ set $gray #8b949e
 set $green #66b38b 
 set $blue #58a6ff
 
-font pango:FiraCode 15
+font pango:Fira Code 15
 
 input * {
     xkb_layout es
@@ -16,8 +16,8 @@ input * {
     repeat_rate 30 
 }
 
-default_border pixel 2
-default_floating_border pixel 2
+default_border pixel 0
+default_floating_border pixel 0
 
 client.focused          $gray   $gray   $fg   $green
 client.unfocused        $bg_alt $bg_alt $fg   $gray
@@ -64,8 +64,9 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 exec_always mako
-exec_always waybar
+exec_always --no-startup-id sh -c "sleep 1 && waybar"
+exec_always kanshi
 
-output * bg ~/.config/wallpapers/wallpaper.jpg fill
+output * bg ~/.config/wallpapers/laptop.jpg fill
 
 focus_on_window_activation smart
