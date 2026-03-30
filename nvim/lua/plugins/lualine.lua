@@ -26,13 +26,16 @@ return {
           },
 
           section_separators = "  ",
-          component_separators = "",
+          component_separators = "󱑼",
           globalstatus = true,
         },
 
         sections = {
           lualine_a = {"mode"},
-          lualine_b = {"filename"},
+          lualine_b = {"filename",{
+              "filetype"
+            }
+          },
           lualine_c = {"encoding"},
           lualine_x = {"diagnostics"},
           lualine_y = {},
