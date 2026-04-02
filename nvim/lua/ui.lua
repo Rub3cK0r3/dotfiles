@@ -13,6 +13,7 @@ vim.opt.signcolumn = "no"
 
 vim.opt.termguicolors = true
 vim.o.background = "dark"
+vim.o.showmode = false
 
 vim.cmd("colorscheme kanagawa")
 
@@ -33,7 +34,6 @@ local groups = {
   "StatusLineTerm",
   "StatusLineTermNC",
   "LineNr",
-  "CursorLineNr",
 }
 
 for _, group in ipairs(groups) do
