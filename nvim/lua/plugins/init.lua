@@ -13,6 +13,7 @@ local modules = {
   "plugins.telescope",
   "plugins.colorscheme",
   "plugins.lualine",
+  "plugins.smear_cursor",
 }
 
 -- For every module i need to check if it's
