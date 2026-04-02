@@ -67,6 +67,8 @@ exec_always mako
 exec_always --no-startup-id sh -c "sleep 1 && waybar"
 exec_always kanshi
 
-output * bg ~/.config/wallpapers/laptop.jpg fill
+for_window [app_id="kitty"] blur on
+
+output * bg ~/.config/wallpapers/wallpaper.png fill
 
 focus_on_window_activation smart
