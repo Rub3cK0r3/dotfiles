@@ -17,27 +17,4 @@ vim.o.showmode = false
 
 vim.cmd("colorscheme kanagawa")
 
-local groups = {
-  "Normal",
-  "NormalNC",
-  "NormalFloat",
-  "VertSplit",
-  "StatusLine",
-  "StatusLineNC",
-  "SignColumn",
-  "Pmenu",
-  "PmenuSel",
-  "TabLine",
-  "TabLineFill",
-  "TabLineSel",
-  "ColorColumn",
-  "StatusLineTerm",
-  "StatusLineTermNC",
-  "LineNr",
-}
-
-for _, group in ipairs(groups) do
-  vim.cmd(string.format("hi %s guibg=#010101", group))
-end
-
 return M
