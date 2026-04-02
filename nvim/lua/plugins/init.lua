@@ -14,6 +14,7 @@ local modules = {
   "plugins.colorscheme",
   "plugins.lualine",
   "plugins.smear_cursor",
+  "plugins.dashboard",
 }
 
 -- For every module i need to check if it's
