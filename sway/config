@@ -64,7 +64,7 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 exec_always mako
-exec_always --no-startup-id sh -c "sleep 1 && waybar"
+exec_always --no-startup-id waybar
 exec_always kanshi
 
 for_window [app_id="kitty"] blur on
