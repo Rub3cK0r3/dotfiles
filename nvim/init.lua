@@ -18,7 +18,5 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup(require("plugins")) -- rub3ck0r3's simple effective plugins
 -- note that i use the directory call, that's bcs i named init.lua to the main file lua/lsp/init.lua
 require("lsp") -- rub3ck0r3's lsp configs for several languages
-require("lazy").load({ plugins = {"mason.nvim", "cmp-buffer"} })
 require("keymaps") -- rub3ck0r3's keymaps for efficient smooth workflow
 require("ui") -- rub3ck0r3's UI nvim config (coloscheme,lualine,..)
-require("misc") -- miscellaneus configs for small but necessary tweaks
