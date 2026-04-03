@@ -2,7 +2,19 @@
 
 A curated, **full-featured Sway environment** with custom keybindings, status bar scripts, Neovim development setup, and beautiful themes.
 
+## 📸 Preview Images
+
+> Background & Waybar:
+![background photo](pictures/background.png)
 ---
+> Multitask Preview:
+![multitask photo](pictures/multi.png)
+---
+> Neovim Custom Dashboard:
+![nvim photo](pictures/nvim.png)
+---
+> Miscellaneous:
+![misc photo](pictures/misc.png)
 
 ## 📂 Repository Structure
 
