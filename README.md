@@ -1,51 +1,78 @@
-# 💻 Sway Dotfiles
+<div align="center">
 
-A curated, **full-featured Sway environment** with custom keybindings, status bar scripts, Neovim development setup, and beautiful themes.
+**`Rub3cK0r3’s Dotfiles`**  
+*Years of crafting a fully optimized, Linux-first development environment*
 
-## 📸 Preview Images
+<img src="https://skillicons.dev/icons?i=linux,neovim,git,docker,python,javascript" />
 
-> Background & Waybar:
-![background photo](pictures/background.png)
+</div>
+
 ---
-> Multitask Preview:
-![multitask photo](pictures/multi.png)
----
-> Neovim Custom Dashboard:
-![nvim photo](pictures/nvim.png)
----
-> Miscellaneous:
-![misc photo](pictures/misc.png)
 
-## 📂 Repository Structure
+## `> the_story`
+
+This isn’t just a repo of configs. It’s **years of iterative work**:
+
+- Experimenting with Linux and Wayland since first installs.  
+- Tweaking Sway keybindings until workflow felt **fluid and natural**.  
+- Building a **Neovim setup** from scratch, plugin by plugin, LSP by LSP.  
+- Polishing the UI with colorschemes, Waybar themes, and wallpapers.  
+- Automating repetitive tasks with shell scripts, Ranger tweaks, and utilities.  
+
+Every file here represents **lessons learned, frustration solved, and efficiency gained**.
+
+---
+
+## 📸 `> journey_in_images`
+
+> Background & Waybar – first impression of the environment  
+![background photo](pictures/background.png)  
+
+> Multitasking workflow – moving between workspaces seamlessly  
+![multitask photo](pictures/multi.png)  
+
+> Neovim Dashboard – coding with full LSP and plugin setup  
+![nvim photo](pictures/nvim.png)  
+
+> Miscellaneous tweaks – small utilities that save hours  
+![misc photo](pictures/misc.png)  
+
+---
+
+## 🗂️ `> structure`
 
 ```
+
 dotfiles/
-├── sway/           # Sway config with custom keybindings & workspace layouts
-├── waybar/         # Status bar configs, styles, and utility scripts
-├── wofi/           # App launcher themes and styling
-├── kitty/          # Terminal emulator configuration
-├── nvim/           # Neovim setup with plugins & LSP
-├── ranger/         # Terminal file manager configuration
-├── picom.conf      # Compositor configuration (transparency, shadows)
-├── htop/           # Custom htop configuration
-└── wallpapers/     # Desktop wallpapers
+├── sway/           # Keybindings, workspace rules, floating logic
+├── waybar/         # Status bar scripts & modular UI
+├── wofi/           # Launchers & themed workflow
+├── kitty/          # Terminal fonts, colors, and performance
+├── nvim/           # Full Neovim setup: LSP, plugins, dashboard
+├── ranger/         # File management efficiency
+├── picom.conf      # Transparency, shadows, and smooth animations
+├── htop/           # Custom view of system metrics
+└── wallpapers/     # Visual polish and consistent themes
+
 ```
 
 ---
 
-## ✨ Features
+## ⚡ `> skills_highlighted`
 
-* **Sway**: Custom workspaces, floating rules, and optimized keybindings
-* **Waybar**: Modular status bar with scripts for audio, brightness, weather, updates, and power draw
-* **Wofi**: Multiple launch themes (Tokyo, Cat)
-* **Neovim**: Lazy-loaded plugins, LSP setup for many languages, UI customizations
-* **Kitty**: Configured for optimal font rendering and color schemes
-* **Picom**: Smooth transparency, shadows, and animations
-* **Ranger**: Enhanced terminal file management
+| Component       | Skill / Achievement                                             |
+| --------------- | --------------------------------------------------------------- |
+| Sway             | Workspace mastery, workflow optimization, keyboard-driven UX  |
+| Waybar & Wofi    | Scripting, modular UI design, status monitoring               |
+| Neovim           | Advanced LSP setup, plugin orchestration, productivity hacks |
+| Kitty & Picom    | Font rendering, color schemes, visual ergonomics             |
+| Ranger           | Terminal-first file management and automation                |
+| Shell scripts    | Efficiency, reproducibility, cross-machine portability       |
+| Dotfile design  | Versioning, maintainability, modular structure               |
 
 ---
 
-## ⚙️ Requirements
+## ⚙️ `> requirements`
 
 | Component    | Purpose                | Optional? |
 | ------------ | ---------------------- | --------- |
@@ -55,25 +82,31 @@ dotfiles/
 | Kitty        | Terminal emulator      | No        |
 | Neovim       | Editor                 | No        |
 | Ranger       | Terminal file manager  | No        |
-| Picom        | Compositor for effects | Yes       |
+| Picom        | Compositor effects     | Yes       |
 | Grim & Slurp | Screenshots            | Yes       |
 | wl-clipboard | Clipboard utilities    | Yes       |
 
-## 🎨 Appearance
+---
 
-* Wallpapers: Located in `wallpapers/`
-* Waybar Styles: `waybar/style.css` and `waybar/src/style2.css`
-* Wofi Styles: `wofi/style.css` and theme folders
+## 🎨 `> look_and_feel`
+
+Everything is **crafted for ergonomics and clarity**:
+
+- Wallpapers in `wallpapers/`  
+- Waybar CSS in `waybar/style.css` and `waybar/src/style2.css`  
+- Wofi themes in `wofi/style.css` and folder themes  
+
+The goal: a **beautiful, distraction-free, efficient workspace**.
 
 ---
 
-## 📝 Contributing
+## 📝 `> contribute`
 
-Contributions are welcome! Fork the repository, tweak keybindings, scripts, or themes, and submit a pull request.
+Fork it. Tweak keybindings, scripts, themes, or Neovim configs.  
+Submit a PR. Every tweak helps **refine a workflow that took years to perfect**.
 
 ---
 
-## 📄 License
+## 📄 `> license`
 
 MIT License – see [LICENSE](LICENSE)
-
