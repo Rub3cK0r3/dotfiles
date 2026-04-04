@@ -69,6 +69,9 @@ exec_always kanshi
 
 for_window [app_id="kitty"] blur on
 
-output * bg ~/.config/wallpapers/wallpaper.png fill
+output * bg ~/.config/wallpapers/wallpaper.jpg fill
 
 focus_on_window_activation smart
+
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec systemctl --user restart xdg-desktop-portal
