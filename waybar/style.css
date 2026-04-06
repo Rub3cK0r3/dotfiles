@@ -12,7 +12,8 @@ window#waybar {
 }
 
 #workspaces {
-	background-color: #24283b;
+    background: transparent;
+    color: #db4b4b;
 	margin: 5px;
 	margin-left: 10px;
 	border-radius: 5px;
@@ -23,15 +24,15 @@ window#waybar {
 }
 
 #workspaces button.focused {
-    color: #24283b;
-    background-color: #0f0f0f;
-    border-radius: 5px;
+    color: #db4b4b;
+    background-color: #24283b;
+    border-radius: 4px;
 }
 
 #workspaces button:hover {
 	background-color: #0f0f0f;
 	color: #24283b;
-	border-radius: 5px;
+	border-radius: 4px;
 }
 
 #custom-date, #clock, #battery, #pulseaudio, #network {
