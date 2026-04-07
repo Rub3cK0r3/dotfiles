@@ -1,39 +1,42 @@
+-- rub3ck0r3's plugins new implementation improving scalability...
+--
 local plugins = {}
 
--- rub3ck0r3's plugins for now..
-local modules = {
-  "plugins.treesitter",
-  "plugins.mason",      
-  "plugins.lspconfig",  
-  "plugins.nvim-cmp",  
-  "plugins.comment",
-  "plugins.autoclose",
-  "plugins.fugitive",
-  "plugins.fzf",
-  "plugins.telescope",
-  "plugins.colorscheme",
-  "plugins.lualine",
-  "plugins.smear_cursor",
-  "plugins.dashboard",
-}
+local function get_plugin_modules()
+  local modules = {}
+  local path = vim.fn.stdpath("config") .. "/lua/plugins"
 
--- For every module i need to check if it's
--- a valid table and if thats the case insert it into the table (used plugins)
-for _, mod in ipairs(modules) do
-  local ok, p = pcall(require, mod)
-  if ok then
-    if type(p) == "table" then
-      -- si p es lista de plugins
-      for _, plug in ipairs(p) do
-        table.insert(plugins, plug)
-      end
-    else
-      vim.notify("Returned Plugin NOT a table: " .. mod, vim.log.levels.ERROR)
+  for _, file in ipairs(vim.fn.readdir(path)) do
+    if file:match("%.lua$") and file ~= "init.lua" then
+      local name = file:gsub("%.lua$", "")
+      table.insert(modules, "plugins." .. name)
     end
+  end
+
+  return modules
+end
+
+local function load_module(mod)
+  local ok, result = pcall(require, mod)
+
+  if not ok then
+    vim.notify("Error loading " .. mod .. "\n" .. result, vim.log.levels.ERROR)
+    return {}
+  end
+
+  if type(result) == "string" then
+    return { result }
+  elseif type(result) == "table" then
+    return result
   else
-    vim.notify("Error loading plugin: " .. mod .. "\n" .. p, vim.log.levels.ERROR)
+    vim.notify("Invalid return type in " .. mod, vim.log.levels.ERROR)
+    return {}
   end
 end
 
-return plugins
+for _, mod in ipairs(get_plugin_modules()) do
+  local plugs = load_module(mod)
+  vim.list_extend(plugins, plugs)
+end
 
+return plugins
