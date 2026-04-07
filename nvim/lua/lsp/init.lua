@@ -1,5 +1,4 @@
 local M = {}
-
 -- This defines how i want my diagnostic
 -- to be shown in the terminal
 vim.diagnostic.config({
