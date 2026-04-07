@@ -1,8 +1,11 @@
 -- UI entrypoint - rub3ck0r3
 
--- critical first
-require("ui.basic")
+local path = vim.fn.stdpath("config") .. "/lua/ui"
 
--- everything else auto
-require("core.loader").load_all("ui")
+for _, file in ipairs(vim.fn.readdir(path)) do
+  if file:match("%.lua$") and file ~= "init.lua" then
+    local mod = file:gsub("%.lua$", "")
+    require("ui." .. mod)
+  end
+end
 
