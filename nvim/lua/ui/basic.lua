@@ -15,4 +15,4 @@ vim.o.showmode = false
 
 vim.opt.guifont = "Fira Code:h15"
 
-vim.cmd("colorscheme kanagawa")
+vim.cmd("colorscheme gruvbox")
