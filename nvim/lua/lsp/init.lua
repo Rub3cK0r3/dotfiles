@@ -19,6 +19,7 @@ end
 
 -- definition of the LSP servers i use on a daily basis
 local servers = {
+  javascript = require("lsp.lsp-languages.ts_ls"),
   bashls = require("lsp.lsp-languages.bashls"),
   clangd = require("lsp.lsp-languages.clangd"),
   cssls = require("lsp.lsp-languages.cssls"),

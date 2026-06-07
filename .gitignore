@@ -49,3 +49,4 @@ __pycache__/
 *.pid
 *.seed
 
+pictures/*.opus

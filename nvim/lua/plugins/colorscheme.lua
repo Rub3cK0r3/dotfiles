@@ -1,15 +1,18 @@
--- I use kanagawa, rub3ck0r3 likes it so much!
+-- I use gruvbox, rub3ck0r3 likes it so much!
 return {
   {
-    "rebelot/kanagawa.nvim",
+    "ellisonleao/gruvbox.nvim",
     lazy = false,
+    priority = 1000,
     config = function()
-      require("kanagawa").setup({
-        compile = true,
-        theme = "wave",
-        background = "hard",
-        dimInactive = false,
+      require("gruvbox").setup({
+        contrast = "hard",
+        transparent_mode = false,
       })
+
+      vim.o.background = "dark"
+      vim.cmd("colorscheme gruvbox")
     end,
   },
 }
+

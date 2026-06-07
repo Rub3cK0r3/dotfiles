@@ -5,7 +5,7 @@ return {
     config = function()
     require("lualine").setup({
         options = {
-          theme = "dracula",
+          theme = "powerline_dark",
           component_separators = "󱑼",
           globalstatus = true,
         }
