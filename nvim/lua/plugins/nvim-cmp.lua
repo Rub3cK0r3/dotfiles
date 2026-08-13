@@ -1,7 +1,8 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    lazy = false,
+    event = { "InsertEnter", "CmdlineEnter" },
+
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
@@ -9,34 +10,38 @@ return {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
     },
+
     config = function()
-      local cmp_ok, cmp = pcall(require, "cmp")
-      if not cmp_ok then return end
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
 
-      local luasnip_ok, luasnip = pcall(require, "luasnip")
-      if not luasnip_ok then return end
-
+      -- LSP capabilities shared with LSP configuration.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      local cmp_lsp_ok, cmp_lsp = pcall(require, "cmp_nvim_lsp")
-      if cmp_lsp_ok then
-        capabilities = cmp_lsp.default_capabilities(capabilities)
-      end
+      local cmp_lsp = require("cmp_nvim_lsp")
+      capabilities = cmp_lsp.default_capabilities(capabilities)
+
       vim.g.lsp_capabilities = capabilities
 
       cmp.setup({
-        -- To see the blue border when choosing option
         window = {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
         },
+
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
           end,
         },
-        mapping = cmp.mapping.preset.insert({
-          ["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
+
+        mapping = {
+          -- Keep Enter completely normal.
+          ["<CR>"] = nil,
+
+          -- Manual completion.
           ["<C-Space>"] = cmp.mapping.complete(),
+
+          -- Navigate completion / expand snippets.
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -46,6 +51,7 @@ return {
               fallback()
             end
           end, { "i", "s" }),
+
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
@@ -55,7 +61,11 @@ return {
               fallback()
             end
           end, { "i", "s" }),
-        }),
+
+          -- Close completion menu.
+          ["<C-e>"] = cmp.mapping.abort(),
+        },
+
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" },
@@ -63,11 +73,14 @@ return {
           { name = "buffer" },
           { name = "path" },
         }),
+
         completion = {
           completeopt = "menu,menuone,noselect",
         },
+
+        -- Keep the editor visually clean.
         experimental = {
-          ghost_text = true,
+          ghost_text = false,
         },
       })
     end,
