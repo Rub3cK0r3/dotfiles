@@ -1701,3 +1701,9 @@ zram-tools					install
 zsh						install
 zsh-common					install
 zstd						install
+nodejs                                          install
+npm                                             install
+build-essential                                 install
+unzip                                           install
+curl                                            install
+golang-go                                       install
