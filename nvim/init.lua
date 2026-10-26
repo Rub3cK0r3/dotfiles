@@ -14,6 +14,16 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.api.nvim_create_autocmd("InsertLeave", {
+  callback = function()
+    if vim.api.nvim_buf_line_count(0) == 1 and vim.api.nvim_buf_get_lines(0, 0, 1, false)[1] == "" then
+      return
+    elseif vim.api.nvim_buf_line_count(0) == 0 or (vim.api.nvim_buf_line_count(0) == 1 and vim.api.nvim_buf_get_lines(0, 0, 1, false)[1] == nil) then
+      vim.api.nvim_buf_set_lines(0, 0, -1, false, { "" })
+    end
+  end,
+})
+
 -- Load personal configs
 require("lazy").setup(require("plugins")) -- rub3ck0r3's simple effective plugins
 -- note that i use the directory call, that's bcs i named init.lua to the main file lua/lsp/init.lua
