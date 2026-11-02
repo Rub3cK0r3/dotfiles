@@ -1,17 +1,20 @@
--- I use gruvbox, rub3ck0r3 likes it so much!
 return {
   {
-    "ellisonleao/gruvbox.nvim",
+    "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("gruvbox").setup({
-        contrast = "hard",
-        transparent_mode = false,
+      require("tokyonight").setup({
+        style = "night",
+        transparent = true,
+        terminal_colors = true,
+        styles = {
+          sidebars = "transparent",
+          floats = "transparent",
+        },
       })
-
       vim.o.background = "dark"
-      vim.cmd("colorscheme gruvbox")
+      vim.cmd.colorscheme("tokyonight-night")
     end,
   },
 }

@@ -1,10 +1,12 @@
--- init.lua for assembling everything together - rub3ck0r3
+local config_dir = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h")
+vim.opt.rtp:prepend(config_dir)
 
-vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/site/pack/packer/start/nvim-treesitter")
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+require("ui.basic")
 
--- BOOTSTRAP lazy.nvim i prefer it cause it is a much optimized choice
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git", "clone", "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
@@ -14,19 +16,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.api.nvim_create_autocmd("InsertLeave", {
-  callback = function()
-    if vim.api.nvim_buf_line_count(0) == 1 and vim.api.nvim_buf_get_lines(0, 0, 1, false)[1] == "" then
-      return
-    elseif vim.api.nvim_buf_line_count(0) == 0 or (vim.api.nvim_buf_line_count(0) == 1 and vim.api.nvim_buf_get_lines(0, 0, 1, false)[1] == nil) then
-      vim.api.nvim_buf_set_lines(0, 0, -1, false, { "" })
-    end
-  end,
-})
-
--- Load personal configs
-require("lazy").setup(require("plugins")) -- rub3ck0r3's simple effective plugins
--- note that i use the directory call, that's bcs i named init.lua to the main file lua/lsp/init.lua
-require("lsp") -- rub3ck0r3's lsp configs for several languages
-require("keymaps") -- rub3ck0r3's keymaps for efficient smooth workflow
-require("ui") -- rub3ck0r3's UI nvim config (coloscheme,lualine,..)
+require("lazy").setup({ spec = require("plugins") })
+vim.opt.rtp:prepend(config_dir)
+require("lsp")
+require("keymaps")
+require("ui")
