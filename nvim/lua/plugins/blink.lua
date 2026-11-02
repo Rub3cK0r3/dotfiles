@@ -109,8 +109,7 @@ return {
         },
       },
       fuzzy = {
-        implementation = "prefer_rust",
-        prebuilt_binaries = { download = false },
+        implementation = "lua",
       },
     },
   },

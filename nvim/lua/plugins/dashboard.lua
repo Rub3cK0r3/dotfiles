@@ -5,46 +5,45 @@ return {
     config = function()
       local alpha = require("alpha")
       local dashboard = require("alpha.themes.dashboard")
-      local title = "SYSTEMS // BACKEND"
-      local subtitle = "OPERATOR CONSOLE"
-      local width = math.max(#title, #subtitle)
-      local border = "+" .. string.rep("-", width + 2) .. "+"
-      local function frame(text)
-        return "| " .. text .. string.rep(" ", width - #text) .. " |"
+      local plugin_dir = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h")
+      local config_dir = vim.fn.fnamemodify(plugin_dir, ":h:h")
+      local banner = vim.fn.readfile(config_dir .. "/lua/ui/banner.txt")
+      while #banner > 0 and banner[#banner] == "" do
+        table.remove(banner)
       end
 
-      dashboard.section.header.val = {
-        border,
-        frame(title),
-        frame(subtitle),
-        border,
-      }
-      dashboard.section.header.opts = { position = "center", hl = "Function" }
-      dashboard.section.buttons.val = {
-        dashboard.button("f", "Find files", "<cmd>Files<cr>"),
-        dashboard.button("/", "Search text", "<cmd>Rg<cr>"),
-        dashboard.button("g", "Git status", "<cmd>Git<cr>"),
-        dashboard.button("c", "Edit config", "<cmd>edit $MYVIMRC<cr>"),
-        dashboard.button("q", "Quit", "<cmd>qa<cr>"),
-      }
-      dashboard.section.buttons.opts.spacing = 0
-      for _, button in ipairs(dashboard.section.buttons.val) do
-        button.opts.width = width + 8
-        button.opts.hl = "Normal"
-        button.opts.hl_shortcut = "DiagnosticInfo"
-        button.opts.align_shortcut = "right"
+      local source_width = 0
+      for _, line in ipairs(banner) do
+        source_width = math.max(source_width, vim.api.nvim_strwidth(line))
       end
-      dashboard.section.footer.val = "SYSTEMS // READY"
-      dashboard.section.footer.opts = { position = "center", hl = "Comment" }
+
+      dashboard.section.header.val = function()
+        local window_width = math.min(vim.o.columns, vim.api.nvim_win_get_width(0))
+        local available_width = math.max(1, window_width - 4)
+        local scale = math.min(1, available_width / source_width)
+        if scale == 1 then
+          return banner
+        end
+
+        local resized = {}
+        for line_index, line in ipairs(banner) do
+          local char_count = vim.fn.strchars(line)
+          local target_count = math.max(1, math.floor(char_count * scale))
+          local chars = {}
+          for target_index = 0, target_count - 1 do
+            local source_index = math.floor(target_index / scale)
+            chars[#chars + 1] = vim.fn.strcharpart(line, source_index, 1)
+          end
+          resized[line_index] = table.concat(chars)
+        end
+        return resized
+      end
+      dashboard.section.header.opts = { position = "center", hl = "Function" }
       dashboard.config.layout = {
-        { type = "padding", val = 1 },
+        { type = "padding", val = 2 },
         dashboard.section.header,
-        { type = "padding", val = 1 },
-        dashboard.section.buttons,
-        { type = "padding", val = 1 },
-        dashboard.section.footer,
       }
-      dashboard.config.opts.margin = 4
+      dashboard.config.opts.margin = 0
       alpha.setup(dashboard.config)
     end,
   },
