@@ -19,12 +19,17 @@ return {
           lualine_x = {
             {
               function()
+                local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
+                if #buf_clients == 0 then
+                  return "LSP OFF"
+                end
+
                 local names = {}
-                for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+                for _, client in ipairs(buf_clients) do
                   table.insert(names, client.name)
                 end
                 table.sort(names)
-                return #names > 0 and table.concat(names, ",") or "LSP OFF"
+                return table.concat(names, ", ")
               end,
               icon = "󰒋",
             },

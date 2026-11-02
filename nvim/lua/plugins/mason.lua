@@ -3,7 +3,15 @@
 return {
   {
     "williamboman/mason.nvim",
-    cmd = "Mason",
-    opts = { ui = { border = "single" } },
+    lazy = false,
+    priority = 1000,
+    opts = {
+      ui = { border = "single" }
+    },
+    config = function(_, opts)
+      require("mason").setup(opts)
+      vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin:" .. vim.env.PATH
+    end,
   },
 }
+
