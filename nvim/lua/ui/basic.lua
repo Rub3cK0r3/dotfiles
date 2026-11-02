@@ -1,18 +1,25 @@
--- basic rub3ck0r3's UI settings
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.swapfile = false
-
+vim.o.undofile = true
+vim.o.updatetime = 250
+vim.o.timeoutlen = 400
+vim.o.signcolumn = "yes"
+vim.o.cursorline = true
+vim.o.completeopt = "menu,menuone,noselect"
+vim.o.splitright = true
+vim.o.splitbelow = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.incsearch = true
+vim.o.hlsearch = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-vim.opt.cursorline = true        
-vim.opt.signcolumn = "no"      
-
+vim.opt.scrolloff = 4
+vim.opt.smoothscroll = true
 vim.opt.termguicolors = true
 vim.o.background = "dark"
 vim.o.showmode = false
-
-vim.opt.guifont = "Fira Code:h15"
-
-vim.cmd("colorscheme gruvbox")
+vim.cmd.syntax("enable")
+vim.opt.guifont = "FiraCode Nerd Font:h15"
