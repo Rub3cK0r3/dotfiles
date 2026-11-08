@@ -8,14 +8,16 @@ return {
         style = "night",
         transparent = true,
         terminal_colors = true,
+        on_highlights = function(highlights, colors)
+          highlights.AlphaHeader = { fg = colors.purple }
+        end,
         styles = {
           sidebars = "transparent",
           floats = "transparent",
         },
       })
       vim.o.background = "dark"
-      vim.cmd.colorscheme("tokyonight-night")
+      vim.cmd.colorscheme("tokyonight")
     end,
   },
 }
-

@@ -8,6 +8,7 @@ return {
       local plugin_dir = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h")
       local config_dir = vim.fn.fnamemodify(plugin_dir, ":h:h")
       local banner = vim.fn.readfile(config_dir .. "/lua/ui/banner.txt")
+
       while #banner > 0 and banner[#banner] == "" do
         table.remove(banner)
       end
@@ -38,7 +39,9 @@ return {
         end
         return resized
       end
-      dashboard.section.header.opts = { position = "center", hl = "Function" }
+
+      dashboard.section.header.opts = { position = "center", hl = "AlphaHeader" }
+
       dashboard.config.layout = {
         { type = "padding", val = 2 },
         dashboard.section.header,
@@ -48,3 +51,4 @@ return {
     end,
   },
 }
+
